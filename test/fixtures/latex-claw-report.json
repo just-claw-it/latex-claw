@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-03-24T20:45:47.573Z",
+  "sections": {
+    "__document__": {
+      "hash": "bc2cc02a796b2e3b:14a95be19130a23b:473327cb258fced6:099e1fbc78ebddcb:018f40a91e2ec1a7:58976efa34640580:3a5640e180d773c6:967c19e5ba987304:d9fd92686033ffa0",
+      "issues": [
+        {
+          "severity": "error",
+          "sectionId": null,
+          "heading": null,
+          "ruleId": "structure.required.references",
+          "message": "No section mapping to \"References\" was found.",
+          "suggestion": "Add a References section. Without it, \\cite{} commands will produce [?] in the output.",
+          "id": "struct-001",
+          "packId": "latex-claw/default"
+        }
+      ],
+      "checkedAt": "2026-03-24T20:45:47.573Z"
+    }
+  }
+}

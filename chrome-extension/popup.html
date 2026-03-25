@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>latex-claw</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 280px;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px 10px;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    header .lobster { font-size: 18px; }
+
+    .status {
+      padding: 12px 14px;
+      border-bottom: 1px solid #2a2a2a;
+      color: #858585;
+      font-size: 12px;
+      min-height: 40px;
+    }
+
+    .status .count-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .count { font-weight: 600; font-size: 13px; }
+    .count.error   { color: #f44747; }
+    .count.warning { color: #cca700; }
+    .count.info    { color: #3794ff; }
+    .count.ok      { color: #4ec94e; }
+
+    section {
+      padding: 10px 14px;
+    }
+
+    .section-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .issue-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .issue-item {
+      background: #252526;
+      border-radius: 4px;
+      padding: 6px 8px;
+      border-left: 3px solid transparent;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .issue-item.error   { border-color: #f44747; }
+    .issue-item.warning { border-color: #cca700; }
+    .issue-item.info    { border-color: #3794ff; }
+
+    .issue-msg { color: #d4d4d4; }
+    .issue-id  { color: #555; font-size: 10px; margin-bottom: 2px; }
+
+    .empty {
+      padding: 20px 14px;
+      text-align: center;
+      color: #555;
+      font-size: 12px;
+    }
+
+    footer {
+      padding: 8px 14px;
+      border-top: 1px solid #2a2a2a;
+      font-size: 10px;
+      color: #555;
+    }
+
+    footer a { color: #3794ff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="lobster">🦞</span>
+    <h1>latex-claw</h1>
+  </header>
+
+  <div class="status" id="status">
+    <div id="status-text">Waiting for report…</div>
+    <div class="count-row" id="count-row" style="display:none">
+      <span class="count error"   id="count-errors">0✗</span>
+      <span class="count warning" id="count-warnings">0⚠</span>
+      <span class="count info"    id="count-infos">0ℹ</span>
+    </div>
+  </div>
+
+  <div id="issues-wrapper">
+    <div class="empty" id="empty-state">
+      No issues or no report loaded yet.<br>
+      Save a .tex file with the VS Code extension enabled.
+    </div>
+    <section id="issues-section" style="display:none">
+      <div class="section-title">Issues</div>
+      <ul class="issue-list" id="issue-list"></ul>
+    </section>
+  </div>
+
+  <footer>
+    <a href="https://github.com/latex-claw/latex-claw" target="_blank">latex-claw</a>
+    — pure renderer, no analysis here
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

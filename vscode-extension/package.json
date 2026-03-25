@@ -1,0 +1,126 @@
+{
+  "name": "latex-claw-vscode",
+  "displayName": "latex-claw",
+  "description": "Live academic paper analysis while you write 🦞",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publisher": "latex-claw",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:latex",
+    "workspaceContains:**/*.tex"
+  ],
+  "main": "./dist/extension.js",
+  "icon": "assets/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "latex-claw.runCheck",
+        "title": "latex-claw: Run Check"
+      },
+      {
+        "command": "latex-claw.runCheckForce",
+        "title": "latex-claw: Run Check (Force Full)"
+      },
+      {
+        "command": "latex-claw.clearDiagnostics",
+        "title": "latex-claw: Clear Diagnostics"
+      },
+      {
+        "command": "latex-claw.openSidecar",
+        "title": "latex-claw: Open Report JSON"
+      }
+    ],
+    "configuration": {
+      "title": "latex-claw",
+      "properties": {
+        "latex-claw.cliPath": {
+          "type": "string",
+          "default": "latex-claw",
+          "description": "Path to the latex-claw CLI binary. Defaults to 'latex-claw' on PATH."
+        },
+        "latex-claw.venue": {
+          "type": "string",
+          "default": "",
+          "description": "Target venue (e.g. ICSE, TOSEM, arXiv). Used by structure-check and other skills."
+        },
+        "latex-claw.paperType": {
+          "type": "string",
+          "default": "full",
+          "enum": [
+            "full",
+            "short",
+            "workshop",
+            "tool-demo"
+          ],
+          "description": "Paper type — affects which sections are required."
+        },
+        "latex-claw.skills": {
+          "type": "string",
+          "default": "all",
+          "enum": [
+            "all",
+            "structure-check",
+            "citation-check",
+            "language-check",
+            "stats-check",
+            "figure-check",
+            "cross-section-check"
+          ],
+          "description": "Which skills to run on save (same as CLI --skill)."
+        },
+        "latex-claw.debounceMs": {
+          "type": "number",
+          "default": 2000,
+          "description": "Delay in milliseconds after save before running checks."
+        },
+        "latex-claw.enableOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically run checks when a .tex file is saved."
+        },
+        "latex-claw.configPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to latex-claw.yaml. When empty, the CLI searches upward from the saved .tex file."
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "latexClawIssues",
+          "name": "latex-claw Issues",
+          "when": "latex-claw.hasIssues"
+        }
+      ]
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "latex-claw.runCheck",
+          "when": "resourceExtname == .tex",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --platform=node --format=cjs",
+    "watch": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/vscode": "^1.110.0",
+    "esbuild": "^0.27.4",
+    "typescript": "^6.0.2"
+  }
+}

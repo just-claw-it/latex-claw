@@ -1,0 +1,15 @@
+# Example custom venue pack (copy beside your paper or reference by path in latex-claw.yaml).
+# Bundled shortcuts: default | icse | strict
+#
+# id: my-lab/icse-2026
+# version: "1"
+# label: ICSE 2026 — team conventions
+# late_related_work_venues_extra:
+#   - icse
+# late_related_work_venues_replace: []   # optional full replace (empty = never allow Related Work after Evaluation)
+
+id: example/custom
+version: "1"
+label: Example custom pack
+late_related_work_venues_extra:
+  - example-venue
